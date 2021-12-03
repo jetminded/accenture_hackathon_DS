@@ -15,6 +15,7 @@ def predictions(image, label=False):
     if label:
       predicted = torch.round(output)
       predicted = predicted.squeeze().tolist()
+
       return predicted
 
     predicted_proba = round(output.squeeze().tolist(), 4) * 100
@@ -22,5 +23,5 @@ def predictions(image, label=False):
 
 
 if __name__ == '__main__':
-    res = predictions('rubbish_classifier/images/test2.jpg')
+    res = predictions('images/test2.jpg')
     print("Вероятность брака:: {0} %".format(res))
