@@ -4,6 +4,7 @@ from model import model
 from data_transform import transform_test
 
 
+# предсказание вероятности брака
 def predictions(image, label=False):
     #image = Image.open(image)
     image = cv2.imread(image)

@@ -13,6 +13,7 @@ class DetectRubbish:
         self.threshold = threshold
         self.area = area
 
+    # распознаем участки брака и грубый процент(площадь найденных квадратов / на площадь изображения)
     def detect(self, input_path, output_path):
         
         img = cv2.imread(input_path)
@@ -55,7 +56,6 @@ class DetectRubbish:
 
 
 if __name__ == '__main__':
-
     detector = DetectRubbish()
     res = detector.detect(input_path='images/test3.jpg', 
                           output_path='result_images/res.jpg')

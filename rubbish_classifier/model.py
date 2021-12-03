@@ -23,6 +23,7 @@ class NN(nn.Module):
         return output
 
 
+# инициализация модели
 model = NN(resnet)
 model.load_state_dict(torch.load('rubbish_classifier/model4.pth', map_location=torch.device('cpu')))
 model.eval()
