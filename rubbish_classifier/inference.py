@@ -1,13 +1,7 @@
-
 import cv2
 import torch
 from model import model
 from data_transform import transform_test
-
-
-
-model.load_state_dict(torch.load('rubbish_classifier/model4.pth'))
-model.eval()
 
 
 def predictions(image, label=False):
@@ -21,7 +15,6 @@ def predictions(image, label=False):
     if label:
       predicted = torch.round(output)
       predicted = predicted.squeeze().tolist()
-
       return predicted
 
     predicted_proba = round(output.squeeze().tolist(), 4) * 100
@@ -30,4 +23,4 @@ def predictions(image, label=False):
 
 if __name__ == '__main__':
     res = predictions('rubbish_classifier/images/test2.jpg')
-    print("Вероятность брака:", res , "%")
+    print("Вероятность брака:: {0} %".format(res))

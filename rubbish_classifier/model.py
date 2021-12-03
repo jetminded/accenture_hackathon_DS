@@ -5,10 +5,9 @@ from torch.utils.data import Dataset, DataLoader
 import torch.nn.functional as F
 
 
-model = models.resnet18(pretrained=True)
-for param in model.parameters():
+resnet = models.resnet18(pretrained=True)
+for param in resnet.parameters():
     param.requires_grad = True
-
 
 
 class NN(nn.Module):
@@ -24,4 +23,6 @@ class NN(nn.Module):
         return output
 
 
-model = NN(model)
+model = NN(resnet)
+model.load_state_dict(torch.load('rubbish_classifier/model4.pth', map_location=torch.device('cpu')))
+model.eval()

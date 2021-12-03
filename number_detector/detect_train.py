@@ -9,7 +9,6 @@ class Detector:
     def __init__(self, config):
         self.config = config
 
-
     def get_number(self, image_path):
         img = cv2.imread(image_path)
         img = cv2.resize(img, (800, 600))
