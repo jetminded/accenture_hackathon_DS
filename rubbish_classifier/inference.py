@@ -18,10 +18,10 @@ def predictions(image, label=False):
 
       return predicted
 
-    predicted_proba = round(output.squeeze().tolist(), 4) * 100
+    predicted_proba = round(output.squeeze().tolist() * 100, 2)
     return predicted_proba
 
 
 if __name__ == '__main__':
     res = predictions('images/test2.jpg')
-    print("Вероятность брака:: {0} %".format(res))
+    print("Вероятность брака: {0} %".format(res))
