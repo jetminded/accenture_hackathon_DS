@@ -1,6 +1,5 @@
 import cv2
 from skimage.color import rgb2hsv, label2rgb
-from skimage.filters import threshold_otsu
 from skimage.morphology import closing, square
 from skimage.measure import label, regionprops
 import matplotlib.patches as mpatches
@@ -8,10 +7,11 @@ import matplotlib.pyplot as plt
 
 
 class DetectRubbish:
-    def __init__(self, image_width=320, image_heigh=480, threshold=200):
+    def __init__(self, image_width=320, image_heigh=480, threshold=200, area=300):
         self.image_width = image_width
         self.image_heigh = image_heigh
         self.threshold = threshold
+        self.area = area
 
     def detect(self, input_path, output_path):
         
@@ -33,7 +33,7 @@ class DetectRubbish:
         rubbish = 0
         for i, region in enumerate(regionprops(label_image)):
             # take regions with large enough areas
-            if region.area >= 300:
+            if region.area >= self.area:
                 #print(region.bbox)
 
                 temp_rubbish = (region.bbox[3]-region.bbox[1]) * (region.bbox[2]-region.bbox[0])
