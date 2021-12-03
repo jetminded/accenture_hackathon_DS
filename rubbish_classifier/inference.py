@@ -23,5 +23,5 @@ def predictions(image, label=False):
 
 
 if __name__ == '__main__':
-    res = predictions('images/test2.jpg')
+    res = predictions('images/test3.jpg')
     print("Вероятность брака: {0} %".format(res))
