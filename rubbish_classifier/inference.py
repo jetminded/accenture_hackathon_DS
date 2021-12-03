@@ -1,0 +1,33 @@
+
+import cv2
+import torch
+from model import model
+from data_transform import transform_test
+
+
+
+model.load_state_dict(torch.load('rubbish_classifier/model4.pth'))
+model.eval()
+
+
+def predictions(image, label=False):
+    #image = Image.open(image)
+    image = cv2.imread(image)
+    image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+    image = transform_test(image=image)['image']
+
+    output = model(image[None, ...])
+
+    if label:
+      predicted = torch.round(output)
+      predicted = predicted.squeeze().tolist()
+
+      return predicted
+
+    predicted_proba = round(output.squeeze().tolist(), 4) * 100
+    return predicted_proba
+
+
+if __name__ == '__main__':
+    res = predictions('rubbish_classifier/images/test2.jpg')
+    print("Вероятность брака:", res , "%")
